@@ -1,0 +1,7 @@
+pydub
+transformers
+torch
+mutagen
+pipelines
+ffutils
+playwright
