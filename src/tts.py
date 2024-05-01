@@ -9,6 +9,7 @@ from ffutils import ffprog
 import shutil
 from pathlib import Path
 from mutagen.mp3 import MP3
+import imgkit
 
 """
 Uploads a text to API and return a mp3 file
@@ -111,7 +112,7 @@ def start(fullText, outDir):
 
     mp3ToSrt(combinedMp3, outDir)
 
-    videoName = mergeVideoSrt("video.mp4", "combined.mp3", "combined.srt", outDir)
+    videoName = mergeVideoSrt("minecraft.mp4", "combined.mp3", "combined.srt", outDir)
 
     return videoName
 
@@ -119,7 +120,8 @@ def start(fullText, outDir):
 
     
 
-
+"""
+"""
 def mergeVideoSrt(videoName, audioName,srtName, outDir):
 
     audioLength = get_mp3_length(outDir + "/" + audioName)
@@ -134,14 +136,13 @@ def mergeVideoSrt(videoName, audioName,srtName, outDir):
         outDir = Path(os.getcwd())
 
     videoOut = outDir / f"{videoName.stem}_out.mp4"
-
    
     ffprog(
         ["ffmpeg", "-y", "-i", str(videoName), "-i", str(audioName), "-vf",
-        f"subtitles={str(srtName.name)}:force_style='Fontname=Arial Narrow Bold,Fontsize=30,OutlineColour=&H80000000,PrimaryColour=&HFFFFFF00,BorderStyle=4,"
-        "BackColour=&H80000000,Outline=0,Shadow=0,MarginV=10,Alignment=2,Bold=-1'", "-c:a", "aac", "-map", "0:v:0", "-map", "1:a:0", "-ss" , "00:00:00", "-t", str(audioLength),
+        f"subtitles={str(srtName.name)}:force_style='Fontname=Arial,Fontsize=30,OutlineColour=&H80000000,PrimaryColour=&H03fcff,BorderStyle=4,"
+        "BackColour=&H80000000,Outline=1,Shadow=0,MarginV=10,Alignment=2,Bold=-1'", "-c:a", "aac", "-map", "0:v:0", "-map", "1:a:0", "-ss" , "00:00:00", "-t", str(audioLength),
         str(videoOut)],
-        cwd=str(srtName.parent),  # https://trac.ffmpeg.org/ticket/3334
+        cwd=str(srtName.parent),
         desc=f"Burning subtitles and audio into video",
     )
     return videoOut
@@ -245,12 +246,41 @@ def mp3ToSrt(fileName, outDir):
     return srt_filename
 
 
-#mp3ToSrt("combined.mp3", "out")
-mergeVideoSrt("video.mp4","combined.mp3", "combined.srt", "outnwe")
+def generateImage(title, outDir):
+    html_content = """
+    <!DOCTYPE html>
+        <html>
+        <head>
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        <style>
+        
+        @font-face {
+            font-family: 'IBM Plex Sans';
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        </style>
+        <title>HTML to Image</title>
+        </head>
+        <body>
+        <h1>Hello, World!</h1>
+        <p>This is an example of generating an image from HTML using Python.</p>
+        </body>
+    </html>
+    """
+
+    imgkit.from_string(html_content,  outDir+ "/output.png")
+
+
+generateImage("hola", "outnwe")
 quit()
+#mp3ToSrt("combined.mp3", "out")
 start("""
-My wife (32F) just walked out on me (36M) with zero explanation and I'm lost
+My wife (32 Female) just walked out on me (36 Male) with zero explanation and I'm lost
 
 We have "talked" a couple times now. Each time I'm trying to give her time to speak to me but it still doesn't make any sense. We cry, she says she still cares but can't be with me, I fall eternally deeper in despair.
 
