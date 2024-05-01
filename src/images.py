@@ -45,10 +45,10 @@ def generateImage(title,reddit, outDir):
         <body>
             <div style="min-height: 100vh; min-width: 100vw;" class="position-relative bg-black">
                 <div class="position-absolute ">
-                    <img src="https://storage.googleapis.com/linebox-bucket/pexels-merlin-lightpainting-10874585.jpg" style="height: 100vh; width: 100vw; position: absolute;; filter: blur(2px)"/>
+                    <img src="https://storage.googleapis.com/linebox-bucket/pexels-merlin-lightpainting-10874585.jpg" style="height: 100vh; width: 100vw; position: absolute;; filter: blur(12px)"/>
                 </div>
                 <div style="min-height: 100vh;" class="d-flex justify-content-center align-items-center position-relative">
-                    <div class="container card m-5 p-3">
+                    <div class="container card rounded-5 m-5 p-5">
                         <div class="d-flex gap-4">
                             <img height="100" class="rounded-5" width="100" src="https://styles.redditmedia.com/t5_2r0cn/styles/communityIcon_qadm8xvply981.png"/>
                            
@@ -62,7 +62,7 @@ def generateImage(title,reddit, outDir):
                                </h1>
                            </div>
                         </div>
-                         <h1 class="fw-bold my-5">{title}</h1>
+                         <h1 class="fw-bold my-5">{title}...</h1>
                         <div class="d-flex gap-4">
 
                             <div  style="background-color: #eaedef;" class=" rounded-5 d-flex align-items-center gap-4 px-4 py-2">

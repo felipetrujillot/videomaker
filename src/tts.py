@@ -19,7 +19,7 @@ def submitTts(text, outDir):
     try:
         response = requests.post(f"{ENDPOINT}/api/generation", json={
             "text": text,
-            "voice": "en_male_jomboy"
+            "voice": "en_us_010"
         })
 
         data = response.json()
@@ -219,7 +219,7 @@ def start(reddit, title, story, outDir):
     newOut = Path(outDir).absolute()
     newOut.mkdir(parents=True, exist_ok=True)
 
-    groupedArray = string_parser(title + ". " + story)
+    groupedArray = string_parser(story)
     fileArray = []
 
     for i in range(len(groupedArray)):
@@ -238,22 +238,15 @@ def start(reddit, title, story, outDir):
     
     return videoName
 
+""""""
 start(  
-    "relationship_advice",
-    "My wife (32 Female) just walked out on me (36 Male) with zero explanation and I'm lost",
-      ""
-    """
-We have "talked" a couple times now. Each time I'm trying to give her time to speak to me but it still doesn't make any sense. We cry, she says she still cares but can't be with me, I fall eternally deeper in despair.
+    reddit="relationship_advice",
+    title="Husband (29m) has secret trip planned with AP. When/How should I (25F) ruin it?",
+    story="""
+Husband (29 male) has secret trip planned with AP. When/How should I (25 Female) ruin it?.
 
-She said even before the wedding she felt like things were off and instead of talking to me, she just put it aside and figured things would get better on there own. I'm still asking what did I do and get the "you were nothing but amazing" and it wasn't my fault.
+Husband told me he had a “guys” trip to another state. He has a past of infidelity with one certain girl. I forgave him, stupidly. Something was telling me things weren’t adding up when he informed me of this trip. He was still signed into my email. I found the tickets. It’s to a completely different INTERNATIONAL location. I know I’m leaving but any suggestions on the best way to do it? I feel spiteful and want to send “enjoy your trip in….” when they land, just to fuck it up from the start and have all my stuff moved out by the time he gets back. She knows he is married as well. Both are terrible people but he’s the one I want to hurt. I pay for all the bills as I am the main breadwinner. He spent 40 bucks on a birthday breakfast for me and is flying her out for hers. It’s a spit in the face.
 
-Then she hit me yesterday with the "when are we selling the house" talk. She says she cannot move back in (I offered to just sleep in the basement) and needs to find a place asap. Am I insane to think this is going way too fast? It's barely been over a week and I've had no time to grieve, to heal, to learn how to do this on my own again. I've been even worse since she dropped that news.
+Please don’t tell me to just move out. This has been years of pain. I want to do something spiteful I’m sorry
 
-She also offered to cover my half of the mortgage because I've not been to work since she left me, then today she hits me with the "actually...." she has missed no work. Fuck I don't even think she's missing sleep.
-
-I was really hoping for something, anything to give me hope for the future but like all I see is a void these days. I always made it OUR future but without her I don't know what to do.
-
-Tomorrow I at least have my first therapist appointment. I hope it helps. The worst is what's the lesson from all this? Don't rely on or love anyone ever again?
-
-Please go home tonight, tell your spouse you love them, and give them a hug like you never wanna let go.
-""", "final")
+""", outDir="final")
