@@ -14,12 +14,17 @@ from images import generateImage
 """
 Uploads a text to API and return a mp3 file
 """
-def submitTts(text, outDir):
+def submitTts(text, outDir, female):
     ENDPOINT = "https://tiktok-tts.weilnet.workers.dev"
+
+    voice = "en_us_010"
+
+    if female == True:
+        voice = "en_female_makeup"
     try:
         response = requests.post(f"{ENDPOINT}/api/generation", json={
             "text": text,
-            "voice": "en_us_010"
+            "voice": voice
         })
 
         data = response.json()
@@ -129,6 +134,10 @@ def mergeMp3(fileArray,fileDir):
 
     fileName = fileDir + "/combined.mp3"
     combined_audio.export(fileName, format='mp3')
+
+    for i in fileArray:
+        os.remove(i)
+
     return fileName
 
 """
@@ -225,7 +234,7 @@ def start(reddit, title, story, outDir):
     for i in range(len(groupedArray)):
         fileDir = outDir +  "/" + str(i) + ".mp3"
         inputText = groupedArray[i]
-        submitTts(inputText, fileDir)
+        submitTts(inputText, fileDir, female=True)
         fileArray.append(fileDir)
 
     combinedMp3 = mergeMp3(fileArray, outDir)
@@ -238,15 +247,75 @@ def start(reddit, title, story, outDir):
     
     return videoName
 
+
+
+start(
+    reddit="relationship_advice",
+    title="How do I (29 F) recommunicate to my fiance (39M) why an Infidelity Clause in our Prenup important to me but also not personal to him?",
+    story="""
+    How do I (29 Female) recommunicate to my fiance (39 Male) why an Infidelity Clause in our Prenup important to me but also not personal to him?.
+
+    My Fiance told me he would ask for a pre nup a year before we got engaged. 
+    If I were in his financial situation I would ask for one as well. I am 29 Female and have 500,000 in my own assets/net worth,
+    My Dad had multiple affairs throughout his marriage to my mom. 
+    Her screams and sobs when she found out are burned into my memory.
+    I had never really thought much about prenups until my fiance brought it up again after we got engaged. 
+    I did some research and decided that if I have to pay a lawyer to review whatever his lawyer drafts to protect his assets, 
+    I want to add an infidelity clause too. I think of it a cathartic nod to the 18 year old version of myself who saw my mom be cheated on as well 
+    as the aftermath from all the affairs. I do not think my fiance would cheat. The best I can describe my feelings towards the infidelity clause is like this, 
+    It's like if your house catches on fire and burns down, once you get a new one you will always pay extra to have the fire insurance. It will 99.9999% never burn down again, 
+    but you still sleep more soundly and you were getting insurance anyway.
+
+    When I brought this up a 3 months ago it was a long conversation but he eventually agreed he was at peace with me having my lawyer add it.
+    His lawyer was still drafting the prenup at this time.
+    Tonight at dinner he brought up that we need to review the prenup. I said "sure" and that "at a glance it looked fine to me." 
+    I then told him that I was still going to have my lawyer add the clause. When I brought this up, 
+    he got really upset and started to say things like "this clause is just going to cause more back and forth with the lawyers. 
+    I don't want to do that" To which I responded, "well that's why we would come up with the terms together, 
+    like how we went over the prenup terms before your lawyer drafted it." 
+    Then he said "well we would have to define what counts as cheating, what if you decide to divorce me one day so you just say I cheated." 
+    "What if I am alone with someone and you say its cheating?"
+
+    When he said this I was caught off guard. It felt really irrational because in divorce courts you need hard proof of cheating, 
+    such as photos, documentation or an omission from the spouse. 
+    It's not something you can just say based on feeling and a judge will agree with you. 
+    Falsely accusing someone of cheating is also something I would never do. 
+    It felt like a bunch of excuses and I was confused on why he was now not okay with it after we had a long discussion a few months ago where he agreed to it. 
+    He said "he would never cheat and doesn't even want to think about cheating and adding the clause would make him think about it."
+    I understand that your partner asking for an infidelity clause could feel shitty, emotional or like your partner doesn't trust you. 
+    I think only people who have been in my shoes could be asked to add it to a prenup and shrug it off without reading too much into it, emotionally.
+    It's important to me to add it, 
+    I have to pay for a lawyer regardless and I would like my request to be understood and respected in the same way I respected his request for a prenup that protects his assets.
+    Thanks for reading this (if anyone does). Looking forward to hearing your thoughts""",
+    outDir="nuevo"
+)
+
+quit()
 """"""
 start(  
     reddit="relationship_advice",
     title="Husband (29m) has secret trip planned with AP. When/How should I (25F) ruin it?",
     story="""
-Husband (29 male) has secret trip planned with AP. When/How should I (25 Female) ruin it?.
+Husband (29 male) has secret trip planned with AP. How should I (25 Female) ruin it?.
 
-Husband told me he had a “guys” trip to another state. He has a past of infidelity with one certain girl. I forgave him, stupidly. Something was telling me things weren’t adding up when he informed me of this trip. He was still signed into my email. I found the tickets. It’s to a completely different INTERNATIONAL location. I know I’m leaving but any suggestions on the best way to do it? I feel spiteful and want to send “enjoy your trip in….” when they land, just to fuck it up from the start and have all my stuff moved out by the time he gets back. She knows he is married as well. Both are terrible people but he’s the one I want to hurt. I pay for all the bills as I am the main breadwinner. He spent 40 bucks on a birthday breakfast for me and is flying her out for hers. It’s a spit in the face.
+Husband told me he had a “guys” trip to another state. 
+He has a past of infidelity with one certain girl. 
+I forgave him, stupidly. 
+Something was telling me things weren’t adding up when he informed me of this trip. 
+He was still signed into my email. 
+I found the tickets. 
+It’s to a completely different INTERNATIONAL location. 
+I know I’m leaving but any suggestions on the best way to do it? 
+I feel spiteful and want to send “enjoy your trip in….” when they land,
+just to fuck it up from the start and have all my stuff moved out by the time he gets back. 
+She knows he is married as well. 
+Both are terrible people but he’s the one I want to hurt. 
+I pay for all the bills as I am the main breadwinner. 
+He spent 40 bucks on a birthday breakfast for me and is flying her out for hers. 
+It’s a spit in the face.
 
-Please don’t tell me to just move out. This has been years of pain. I want to do something spiteful I’m sorry
+Please don’t tell me to just move out. This has been years of pain. 
+I want to do something spiteful I’m sorry
 
-""", outDir="final")
+""", 
+    outDir="final")

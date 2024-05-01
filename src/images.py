@@ -56,7 +56,7 @@ def generateImage(title,reddit, outDir):
 
                                <h1 class="fs-3">r/{reddit}
                                </h1>
-                               <h1 class="fs-4 fw-light">@gh0stpalace
+                               <h1 class="fs-4 fw-light">@stories-palace
                                 <i class="bi bi-check-circle text-primary"></i>
    
                                </h1>
