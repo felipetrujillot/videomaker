@@ -9,7 +9,7 @@ from ffutils import ffprog
 import shutil
 from pathlib import Path
 from mutagen.mp3 import MP3
-import imgkit
+from images import generateImage
 
 """
 Uploads a text to API and return a mp3 file
@@ -33,9 +33,6 @@ def submitTts(text, outDir):
 
     except Exception as e:
         raise e
-
-# Example usage:
-
 
 """
 Receives a full text and it returns it on groups of
@@ -86,40 +83,13 @@ def string_parser (text):
 
     return newDict
     
+"""
+"""
 def get_mp3_length(file_path):
     audio = MP3(file_path)
     length_in_seconds = audio.info.length
     return int(length_in_seconds) + 1
                     
-"""
-"""
-def start(fullText, outDir):
-
-    newOut = Path(outDir).absolute()
-    newOut.mkdir(parents=True, exist_ok=True)
-
-    groupedArray = string_parser(fullText)
-    fileArray = []
-
-    for i in range(len(groupedArray)):
-        fileDir = outDir +  "/" + str(i) + ".mp3"
-        inputText = groupedArray[i]
-        submitTts(inputText, fileDir)
-        fileArray.append(fileDir)
-
-
-    combinedMp3 = mergeMp3(fileArray, outDir)
-
-    mp3ToSrt(combinedMp3, outDir)
-
-    videoName = mergeVideoSrt("minecraft.mp4", "combined.mp3", "combined.srt", outDir)
-
-    return videoName
-
-    
-
-    
-
 """
 """
 def mergeVideoSrt(videoName, audioName,srtName, outDir):
@@ -147,8 +117,6 @@ def mergeVideoSrt(videoName, audioName,srtName, outDir):
     )
     return videoOut
 
-
-
 """
 Receives an array of files and return an array of all of them combined
 """
@@ -175,7 +143,6 @@ def seconds_to_srt_time_format(seconds):
     minutes = int(minutes)
     seconds = int(seconds)
     return f"{hours:02d}:{minutes:02d}:{int(seconds):02d},{milliseconds:03d}"
-
 
 """
 Receives an mp3 and create an srt
@@ -245,43 +212,37 @@ def mp3ToSrt(fileName, outDir):
 
     return srt_filename
 
+"""
+"""
+def start(reddit, title, story, outDir):
 
-def generateImage(title, outDir):
-    html_content = """
-    <!DOCTYPE html>
-        <html>
-        <head>
+    newOut = Path(outDir).absolute()
+    newOut.mkdir(parents=True, exist_ok=True)
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        <style>
-        
-        @font-face {
-            font-family: 'IBM Plex Sans';
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        </style>
-        <title>HTML to Image</title>
-        </head>
-        <body>
-        <h1>Hello, World!</h1>
-        <p>This is an example of generating an image from HTML using Python.</p>
-        </body>
-    </html>
+    groupedArray = string_parser(title + ". " + story)
+    fileArray = []
+
+    for i in range(len(groupedArray)):
+        fileDir = outDir +  "/" + str(i) + ".mp3"
+        inputText = groupedArray[i]
+        submitTts(inputText, fileDir)
+        fileArray.append(fileDir)
+
+    combinedMp3 = mergeMp3(fileArray, outDir)
+
+    mp3ToSrt(combinedMp3, outDir)
+
+    videoName = mergeVideoSrt("minecraft.mp4", "combined.mp3", "combined.srt", outDir)
+
+    generateImage(title,reddit,outDir)
+    
+    return videoName
+
+start(  
+    "relationship_advice",
+    "My wife (32 Female) just walked out on me (36 Male) with zero explanation and I'm lost",
+      ""
     """
-
-    imgkit.from_string(html_content,  outDir+ "/output.png")
-
-
-generateImage("hola", "outnwe")
-quit()
-#mp3ToSrt("combined.mp3", "out")
-start("""
-My wife (32 Female) just walked out on me (36 Male) with zero explanation and I'm lost
-
 We have "talked" a couple times now. Each time I'm trying to give her time to speak to me but it still doesn't make any sense. We cry, she says she still cares but can't be with me, I fall eternally deeper in despair.
 
 She said even before the wedding she felt like things were off and instead of talking to me, she just put it aside and figured things would get better on there own. I'm still asking what did I do and get the "you were nothing but amazing" and it wasn't my fault.
@@ -295,5 +256,4 @@ I was really hoping for something, anything to give me hope for the future but l
 Tomorrow I at least have my first therapist appointment. I hope it helps. The worst is what's the lesson from all this? Don't rely on or love anyone ever again?
 
 Please go home tonight, tell your spouse you love them, and give them a hug like you never wanna let go.
-""", "outnwe")
-#submitTts("Hello, this is a test")
+""", "final")

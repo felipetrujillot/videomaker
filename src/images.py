@@ -1,5 +1,4 @@
-from playwright.sync_api import sync_playwright, Playwright
-
+from playwright.sync_api import sync_playwright
 
 style = """<style>
             * {
@@ -23,6 +22,8 @@ style = """<style>
                 font-size: calc(1rem * 1.75) !important;
             }
         </style>"""
+
+
 def generateImage(title,reddit, outDir):
     html_content = f"""
 
@@ -92,30 +93,16 @@ def generateImage(title,reddit, outDir):
         chromium = playwright.chromium
         browser = chromium.launch()
 
-
         page = browser.new_page()
 
-        #page.goto("chrome://settings")
-        #page.wait_for_load_state()
-
-        #page.evaluate(f"chrome.settingsPrivate.setDefaultZoom(1.75);")
-
         page.set_content(html_content)
-        #page.evaluate("document.body.style.transform=1.5")
 
         page.wait_for_load_state()
         page.screenshot(path=outDir+"/frontpage.png", type="png")
-        #page.set_viewport_size({"width": 700, "height": 500})  # Adjust based on your desired size
+        page.set_viewport_size({"width": 1920, "height": 1080})  # Adjust based on your desired size
 
         browser.close()
         return
-        """ browser = await broswer.launch({
-            "args": ['--no-sandbox'],
+       
 
-        })
-        page = await browser.newPage()
-        await page.setContent(html_content)
-        await page.screenshot({"path" : "out.png", "fullPage" :True})
-        await browser.close() """
-
-generateImage("I (F24) don’t know if I should be concerned about these weird videos I found in my bf’s (M33) camera roll?", "relationship_advice", "outnwe")
+#generateImage("I (F24) don’t know if I should be concerned about these weird videos I found in my bf’s (M33) camera roll?", "relationship_advice", "outnwe")
