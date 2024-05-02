@@ -58,7 +58,7 @@ def string_parser (text):
             newArr.append(i)
             totalCharacters += len(i) + 1
 
-            if(totalCharacters > 280):
+            if(totalCharacters > 260):
                 newString = ''
 
                 for a in newArr:
@@ -175,7 +175,7 @@ def mp3ToSrt(fileName, outDir):
 
     temp_srt = mktemp(suffix=".srt", dir=outDir)
 
-    model = "medium"
+    model = "large"
     if torch.cuda.is_available():
         device = "cuda"
         dtype = torch.float16
