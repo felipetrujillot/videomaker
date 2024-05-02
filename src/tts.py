@@ -223,7 +223,7 @@ def mp3ToSrt(fileName, outDir):
 
 """
 """
-def start(reddit, title, story, outDir):
+def start(reddit, title, story, outDir, female):
 
     newOut = Path(outDir).absolute()
     newOut.mkdir(parents=True, exist_ok=True)
@@ -234,7 +234,7 @@ def start(reddit, title, story, outDir):
     for i in range(len(groupedArray)):
         fileDir = outDir +  "/" + str(i) + ".mp3"
         inputText = groupedArray[i]
-        submitTts(inputText, fileDir, female=True)
+        submitTts(inputText, fileDir, female)
         fileArray.append(fileDir)
 
     combinedMp3 = mergeMp3(fileArray, outDir)
@@ -248,7 +248,97 @@ def start(reddit, title, story, outDir):
     return videoName
 
 
+start(
+    reddit="relationship_advice",
+    title="FINAL UPDATE: She stole again. I (26M) threw my pregnant girlfriend (22F) out because she refuses to pay rent or her share of the bills?",
+    story="""
 
+        FINAL UPDATE: She stole again. I (26 Male) threw my pregnant girlfriend (22 Female) out because she refuses to pay rent or her share of the bills?
+
+        Original story:
+
+        Long story short, my girlfriend and I have been living together for around 10 months.
+        When she first moved in she insisted on paying rent and I was reluctant to charge her if it didn’t work out but she forced it and paid a month.
+        Then I found out she’s struggling for money, unable to pay for things,
+        is in a lot of debt and lives month to month. She agreed with me that she’d start when she clears the debt.
+        Fast forward to Christmas I find out she’s been stealing my clothes to give to her family as gifts (another post on here). 
+        She lied for 2 weeks blaming me until I showed her footage of her taking the things from the camera in the living room (to watch the dog when I’m out).
+
+        I later then discover through letters and texts I’ve seen appear on her phone she’s been doing nothing to pay any of it off,
+        so I confront her. She tells me and shows me messages that her mother and sisters constantly guilt trip her into giving them money and have for years.
+
+        They’ll message her on pay day asking for it and she feels bad saying no, 
+        despite non of them ever paying it back. Her mum alone owes her over £6000. 
+        She has taken a ton of loans out for her family and they leave her with the debt and don’t pay it back. 
+        Luckily her credit is now at the point where nobody will loan to her but she still tries and does it for them. 
+        I also find out (I went through her finances, 
+        yes I shouldn’t have but something wasn’t adding up and I was being lied to) that in the space of 20 minutes she spent £300 on gambling sites. 
+        All during this time she isn’t paying a penny towards rent, bills anything. She’ll occasionally buy food shopping or trips out to Starbucks. 
+        I tell her enough is enough and she needs to start paying her way. 
+        If she can give handouts to her family and gamble she can pay for where she lives and she’s taken me for a ride when she should’ve been saving and clearing debts.
+
+        I make roughly 5x what she does but I’ve been fair in that the bills are split proportionally to income. 
+        She’ll earn £1400 per month and pays £600 which includes rent and her share of the bills. 
+        I take on the rest which is substantially more but I believe it’s not fair to take more.
+
+        On the 1st of this month she tells me she can’t pay rent. She says she’s paid out too much on our trips to Starbucks, 
+        food shopping and I’ll get it when I get it but she doesn’t understand why I need it this month when she’s lived for free the past 9 months anyway. 
+        I’ve asked her to explain where her money has exactly gone but she tells me I’m controlling and it’s non of my business. 
+        In fairness she will pay when we go food shopping but rarely in comparison to me. 
+        I’ve kicked her out as of yesterday and told her she needs to find somewhere to live. 
+        She is however pregnant and she’s using that card as a way to guilt trip me and make out I’ve thrown out her and my child onto the streets.
+
+        In my opinion she is taking me for a ride and prioritising her family that is using her over her own family she’s started? What’s the solution here to getting her to see she’s not treating me fairly?
+
+        TLDR: Girlfriend hasn’t paid rent for 9 months whilst she was supposed to be clearing debts. 
+        Instead she was giving money to her family, gambling and I’ve thrown her out because she’s refusing to pay again. She is pregnant.
+
+        Update:
+
+        I sat her down and gave her an ultimatum early last week. 
+        I explained to her that we are a family, and became a family when she decided to have a baby with me. 
+        I told her if we’re going to stay together she’s going to have to be a lot more open, 
+        contribute and no more taking on debt she can’t afford which brings it to my door when she can’t pay. 
+        I also told her I want to see her bank statements because I suspect she has a gambling problem and is in some serious debt. 
+        She agreed to all of this and committed to showing me the bank statements when I ask and says going forward she’ll pay towards bills. 
+        I believe she’s turned a corner and start getting along with her better and she moves back in.
+
+        As I was sat next to her phone last night when she went to grab a drink her phone lit up with a text message. 
+        It read “loan accepted by X lender, click here to accept.” 
+        I immediately called her out and she starts crying telling me she has no money left again for the month and she’s had to resort to payday loans for some money. 
+        I tell her she should’ve have come to me and tell her I explicitly said no more loans.
+
+        She also tells me she won’t be able to afford to pay towards bills again. 
+        She works full time and brings home around £1400-£1200 a month dependant on hours but a lot of the time she phones sick so gets sick pay which is a lot less. 
+        I ask to see her bank statements and she refuses telling me I’m being controlling by asking when she’s told me and I don’t need to see them. 
+        That’s the last straw for me. I’m almost certain she’s been giving it away at this point again or gambling. 
+        I give her a scenario: “Your baby is starving and needs food and there’s non in the house, what are you going to do.”
+
+        She replies “you’ll have to pay.” That’s fine I’ll happily support my son I tell her because the mother is clearly a deadbeat. 
+        So I ask to see her Facebook Messenger to see if her family have been hitting her up for free money again and conveniently all of the family members that borrow from her have the chats cleared (she says she deletes them to be tidy, yet mines still there).
+
+        I told her this isn’t going to work and she tells me I’m a controlling freak basically and she agrees and I’ve not heard from her since. Moral of the story is she’s too damaged from her upbringing I’m guessing and some people you just can’t change. She still messages me asking how I am but I’m sjust ignoring her except from anything baby related. I need to move on.
+
+        I know a lot of people questioned whether she’s pregnant, how stupid I was to get her pregnant (I agree) and if it’s mine. I’ve been to every scan so I know she’s pregnant, as for if it’s mine I’ve never suspected cheating but she’s a serial liar so I will be forcing a DNA test through the courts. I posted on a couple of different subs to make sure I wasn’t getting biased opinions. The above story is 100% true (I wish it wasn’t believe me) but my focus is now getting as far away as possible from her for my own sake.
+
+        
+        Final update:
+
+        After a couple of weeks or learning she was sleeping around on family members or friends sofas I allowed her back into the house given that she is pregnant. Around a month ago. Out of concern for the baby really given she’s now 8 months pregnant. Stupid on my part and I’m now going to explain why I regret it.
+
+        I’ve recently moved house (a couple of months ago) and she was involved in the packaging and unpacking whilst I was out. Mainly unpacking. I had a pretty large stack of cash in the drawer of a cabinet in living room. Around £400-500. This was a Christmas gift from my parents. During this time I also sold a lot of old furniture including a sofa which she begged and begged for me to sell it to her mother. I begrudgingly accepted this. She told me her mother had asked to borrow the money from her repeatedly to buy it from me and asked if she could pay a couple of weeks after she took it. No biggie, that’s fine I tell her.
+
+        Her mother collects the sofa, giving me £100 cash initially and tells me the rest will be with me in a week. A week comes round and she tells me it’ll be next month but she’s not happy as it’s collapsed and I need to come take a look. I tell her it was fine was she collected it and I’m not taking a look. Basically if you don’t want it I’ll collect it and sell it to someone who wants to pay. She tells me I’m not welcome in their house. My girlfriend (ex) told her there was nothing wrong with the sofa at all when it was collected and her mother tells her she’s also not welcome. My ex then flips it onto me telling me I’m controlling and she didn’t need to get involved to fall out with her family. I didn’t make her but I told her it showed where her priorities lie when she’s defending them and not wanting to get involved over them screwing me over. It was left at that.
+
+        Back to the money, I went to see where the money went and searched the entire house. It’s not there but everything that was unpacked was there, even pointless shit like a blown light bulb was packed and unpacked. I ask her where the money is and she immediately gets defensive. Tells me “it’s somewhere” and immediately I think “this is all the same answers as last time.”
+
+        It then dawned on me that the money I was gifted, was in £10 notes and the money I was part paid for my sofa was also in £10 notes so my suspicion is she’s stole my money for her to hand to her mother to pay me. I’ve basically paid myself minus what been taken. I confronted her and she replied “even if I did admit it to try and sort things I don’t care about you anymore anyway so I don’t need to.” Probably makes sense why she was trying to take a loan out roughly the same time she would’ve taken the money. So there we have it, I let her stop for a while and this is where it’s landed me. Her stealing again. Whilst I have no solid proof whatsoever it could only be her that took it and if everything else got unpacked then she’s certainly took it. Shes now threatening to out me to people for who I really am (a victim of theft I guess?) and she’ll tell everyone how awful I am and not to bother contacting her. I’ve thrown her back out again for the very last time and I’m just relieved. Not sad at all. Whilst I have no proof her reaction is all the proof I need. Now I’m forcing a DNA test at birth and will fight to make sure no child of mine is brought up in a family like hers. She is poison. People like her don’t change. They just take more.
+    """,
+    outDir="nuevo",
+    female=False,
+)
+
+quit()
 start(
     reddit="relationship_advice",
     title="How do I (29 F) recommunicate to my fiance (39M) why an Infidelity Clause in our Prenup important to me but also not personal to him?",
